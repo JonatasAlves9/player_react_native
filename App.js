@@ -1,62 +1,34 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-
-const App: () => React$Node = () => {
+import Video from 'react-native-video';
+const App = () => {
+  const url = 'https://www.w3schools.com/html/mov_bbb.mp4';
+  const type = 0;
   return (
     <>
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Try editing me! 🎉</Text>
-      </View>
+      {type === 0 ? (
+        <Video
+          source={{uri: 'https://www.w3schools.com/html/mov_bbb.mp4'}} // Can be a URL or a local file.
+          style={styles.backgroundVideo}
+          fullscreen={true}
+          fullscreenOrientation={'landscape'}
+          repeat={true}
+          resizeMode={'cover'}
+        />
+      ) : (
+        <Text>Imagem</Text>
+      )}
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
+  backgroundVideo: {
     position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
     right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
   },
 });
 
