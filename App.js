@@ -4,13 +4,20 @@ import Video from 'react-native-video';
 import FilePickerManager from 'react-native-file-picker';
 
 const App = () => {
-  const [type, setType] = useState(0);
+  const [type, setType] = useState(1);
   const [url, setUrl] = useState('https://www.w3schools.com/html/mov_bbb.mp4');
   const [newList, setNewList] = useState([]);
+  const [indice, setIndice] = useState(0);
   const array = useState([]);
 
   function onEnd() {
-    setType(1);
+    setIndice(indice + 1);
+    console.log(indice, newList.length);
+    console.log(newList);
+    const size = newList.length - 1;
+    if (size === indice) {
+      setType(1);
+    }
   }
 
   function selectFile() {
@@ -23,8 +30,9 @@ const App = () => {
         console.log('FilePickerManager Error: ', response.error);
       } else {
         setNewList([response.uri].concat(newList));
-        setNewList((newList) => [...newList, response.uri]);
+        //setNewList((newList) => [...newList, response.uri]);
         console.log('-----------' + newList);
+        setType(0);
       }
     });
   }
@@ -34,7 +42,7 @@ const App = () => {
       {type === 0 ? (
         <Video
           source={{
-            uri: url,
+            uri: newList[indice],
           }} // Can be a URL or a local file.
           style={styles.backgroundVideo}
           onEnd={() => onEnd()} // Callback when playback finishes
