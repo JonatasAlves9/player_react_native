@@ -24,9 +24,7 @@ const App = () => {
     }
   }
 
-  function teste() {
-    setTimeout(console.log('teste'), 5000);
-  }
+  function teste() {}
 
   function start() {
     var fila = 0;
@@ -40,7 +38,7 @@ const App = () => {
       case 'image/jpeg':
         setUrl(newList[fila].uri);
         setType(1);
-        teste();
+        setTimeout(() => onEnd(fila), 5000);
         break;
       case 'video/mp4':
         setUrl(newList[fila].uri);
@@ -85,23 +83,14 @@ const App = () => {
       resizeMode={'cover'}
     />
   );
-
   const ViewImage = (
-    <>
-      {!newList ? (
-        <>
-          <Image
-            style={styles.logo}
-            fadeDuration={800}
-            source={{
-              uri: url,
-            }}
-          />
-        </>
-      ) : (
-        <></>
-      )}
-    </>
+    <Image
+      style={styles.logo}
+      fadeDuration={800}
+      source={{
+        uri: url,
+      }}
+    />
   );
 
   const ViewWeb = (
