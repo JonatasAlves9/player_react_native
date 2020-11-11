@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text, Button, Image} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, Button, Image} from 'react-native';
 import {WebView} from 'react-native-webview';
 import Video from 'react-native-video';
 import FilePickerManager from 'react-native-file-picker';
@@ -7,7 +7,12 @@ import FilePickerManager from 'react-native-file-picker';
 const App = () => {
   const [type, setType] = useState(3);
   const [url, setUrl] = useState('');
-  const [newList, setNewList] = useState([]);
+  const [newList, setNewList] = useState([
+    {
+      uri: 'https://www.google.com.br/',
+      type: 'web',
+    },
+  ]);
   const [fila1, SetFila1] = useState([]);
 
   function onEnd(fila) {
@@ -16,15 +21,14 @@ const App = () => {
     console.log('OnEnd' + fila, size);
     console.log(fila + 1);
     if (fila === size) {
-      fila === 0;
+      const newFila = 0;
       console.log('------------OnEnd** Resetou indice:' + fila);
-      setType(3);
+      verifyType(newFila);
+      console.log(fila);
     } else {
       verifyType(fila);
     }
   }
-
-  function teste() {}
 
   function start() {
     var fila = 0;
@@ -35,6 +39,21 @@ const App = () => {
     const typeCase = newList[fila].type; // indice === 1
 
     switch (typeCase) {
+      case 'web':
+        setUrl(newList[fila].uri);
+        setType(0);
+        setTimeout(() => onEnd(fila), 3000);
+        break;
+      case 'image/hric':
+        setUrl(newList[fila].uri);
+        setType(1);
+        setTimeout(() => onEnd(fila), 5000);
+        break;
+      case 'image/png':
+        setUrl(newList[fila].uri);
+        setType(1);
+        setTimeout(() => onEnd(fila), 5000);
+        break;
       case 'image/jpeg':
         setUrl(newList[fila].uri);
         setType(1);
@@ -63,7 +82,6 @@ const App = () => {
             },
           ].concat(newList),
         );
-        //setNewList((newList) => [...newList, response.uri]);
         setType(3);
       }
     });
@@ -96,7 +114,7 @@ const App = () => {
   const ViewWeb = (
     <WebView
       source={{
-        uri: 'https://github.com/facebook/react-native',
+        uri: url,
       }}
       style={{marginTop: 20}}
     />
@@ -114,17 +132,6 @@ const App = () => {
           <Button title="Play" onPress={() => start()} />
         </>
       )}
-      {/*run === true ? (
-        ViewVideo
->>>>>>> Stashed changes
-      ) : (
-        <>
-          {ViewImage}
-          <Text>{newList}</Text>
-          <Button title="Teste" onPress={() => selectFile()} />
-          <Button title="Play" onPress={() => start()} />
-        </>
-      )*/}
     </>
   );
 };
