@@ -34,15 +34,6 @@ export default function selector_midia() {
     </>
   );
 
-  const storeData = async (value) => {
-    try {
-      await AsyncStorage.setItem('@storage_Key', value);
-      return 'true';
-    } catch (e) {
-      // saving error
-    }
-  };
-
   function deleteFile(uriObj) {
     var i = newList.findIndex((x) => x.uri === uriObj);
     var listUri = [...newList];
@@ -51,7 +42,7 @@ export default function selector_midia() {
   }
 
   function selectFile() {
-    FilePickerManager.showFilePicker(null, (response) => {
+    FilePickerManager.showFilePicker(null, async (response) => {
       if (response.didCancel) {
       } else if (response.error) {
       } else {
@@ -63,7 +54,11 @@ export default function selector_midia() {
             },
           ].concat(newList),
         );
-        console.log(newList);
+        var someArray = newList;
+        await AsyncStorage.setItem('someArrayName', JSON.stringify(someArray));
+        var someArrayString = await AsyncStorage.getItem('someArrayName');
+        var someArray = JSON.parse(someArrayString);
+        console.log(someArray);
       }
     });
   }
@@ -98,10 +93,6 @@ export default function selector_midia() {
             <TouchableOpacity style={styles.button_main} onPress={selectFile}>
               <Image source- />
               <Text style={styles.text_main2}>Adicionar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button_main} onPress={selectFile}>
-              <Image source- />
-              <Text style={styles.text_main2}>Salvar</Text>
             </TouchableOpacity>
           </SafeAreaView>
         </>
