@@ -13,25 +13,20 @@ const App = () => {
       type: 'web',
     },
   ]);
+
   const [fila1, SetFila1] = useState([]);
 
   function onEnd(fila) {
     fila === fila++;
     const size = newList.length;
-    console.log('OnEnd' + fila, size);
-    console.log(fila + 1);
     if (fila === size) {
-      const newFila = 0;
-      console.log('------------OnEnd** Resetou indice:' + fila);
-      verifyType(newFila);
-      console.log(fila);
+      start(0);
     } else {
       verifyType(fila);
     }
   }
 
-  function start() {
-    var fila = 0;
+  function start(fila) {
     verifyType(fila); // indice === 0
   }
 
@@ -104,7 +99,6 @@ const App = () => {
   const ViewImage = (
     <Image
       style={styles.logo}
-      fadeDuration={800}
       source={{
         uri: url,
       }}
@@ -129,7 +123,7 @@ const App = () => {
         <>
           <Text>{}</Text>
           <Button title="Teste" onPress={() => selectFile()} />
-          <Button title="Play" onPress={() => start()} />
+          <Button title="Play" onPress={() => start(0)} />
         </>
       )}
     </>
