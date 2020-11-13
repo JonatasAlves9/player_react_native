@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, Button} from 'react-native';
+import {StyleSheet, View, Text, Button, Image} from 'react-native';
 import Video from 'react-native-video';
 import FilePickerManager from 'react-native-file-picker';
 
