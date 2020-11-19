@@ -10,12 +10,27 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/drawer": "^5.11.1",
+    "@react-navigation/native": "^5.8.9",
+    "@react-navigation/stack": "^5.12.6",
     "babel-loader": "^8.1.0",
+    "expo": "^39.0.4",
+    "install": "^0.13.0",
+    "navigation": "^5.3.1",
     "react": "16.13.1",
     "react-native": "^0.63.3",
+    "react-native-async-storage": "^0.0.1",
     "react-native-file-picker": "^0.0.19",
+    "react-native-gesture-handler": "^1.8.0",
+    "react-native-maps": "^0.27.1",
+    "react-native-reanimated": "^1.13.1",
+    "react-native-safe-area-context": "^3.1.8",
+    "react-native-screens": "^2.14.0",
     "react-native-video": "^5.1.0-alpha8",
+    "react-navigation": "^4.4.3",
     "react-player": "^2.6.2",
+    "save": "^2.4.0",
     "webpack": "^5.3.2"
   },
   "devDependencies": {

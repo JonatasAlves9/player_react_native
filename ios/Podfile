@@ -8,6 +8,8 @@ target 'player_react_native' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   target 'player_react_nativeTests' do
     inherit! :complete
     # Pods for testing

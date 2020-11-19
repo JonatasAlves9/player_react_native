@@ -1,65 +1,30 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, Text, Button} from 'react-native';
-import Video from 'react-native-video';
+import React from 'react';
+import { StyleSheet, View, Text, Button } from 'react-native';
 import FilePickerManager from 'react-native-file-picker';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import Main from './src/pages/Main';
+import Selector_midia from './src/pages/Selector_midia';
+import Screen_license from './src/pages/Screen_license';
+import Teste from './src/pages/Teste';
+import Config from './src/pages/Config';
 
-const App = () => {
-  const [type, setType] = useState(0);
-  const [url, setUrl] = useState('https://www.w3schools.com/html/mov_bbb.mp4');
-  const [newList, setNewList] = useState([]);
-  const array = useState([]);
+const Stack = createStackNavigator();
 
-  function onEnd() {
-    setType(1);
-  }
-
-  function selectFile() {
-    FilePickerManager.showFilePicker(null, (response) => {
-      console.log('Response = ', response);
-
-      if (response.didCancel) {
-        console.log('User cancelled file picker');
-      } else if (response.error) {
-        console.log('FilePickerManager Error: ', response.error);
-      } else {
-        setNewList([response.uri].concat(newList));
-        setNewList((newList) => [...newList, response.uri]);
-        console.log('-----------' + newList);
-      }
-    });
-  }
+export default function App() {
 
   return (
-    <>
-      {type === 0 ? (
-        <Video
-          source={{
-            uri: url,
-          }} // Can be a URL or a local file.
-          style={styles.backgroundVideo}
-          onEnd={() => onEnd()} // Callback when playback finishes
-          fullscreen={true}
-          fullscreenOrientation={'landscape'}
-          resizeMode={'cover'}
-        />
-      ) : (
-        <>
-          <Text>{newList}</Text>
-          <Button title="Teste" onPress={() => selectFile()} />
-        </>
-      )}
-    </>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Main">
+        <Stack.Screen name="Tela Inicial" component={Main} />
+        <Stack.Screen name="Selector_midia" component={Selector_midia} 
+        options={{title: "Seletor de  Mídias"}}/>
+        <Stack.Screen name="Licença" component={Screen_license} />
+        <Stack.Screen name="Teste" component={Teste} 
+        options={{title: "Licença"}} />
+        <Stack.Screen name="Config" component={Config}  
+        options={{title: "Configurações"}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
-
-const styles = StyleSheet.create({
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-  },
-});
-
-export default App;
+}

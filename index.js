@@ -4,7 +4,7 @@
 
 import {AppRegistry} from 'react-native';
 import App from './App';
-import screen_license from './src/pages/screen_license'
+import Main from './src/pages/Main'
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => screen_license);
+AppRegistry.registerComponent(appName, () => App);

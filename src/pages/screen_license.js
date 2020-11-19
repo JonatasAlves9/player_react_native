@@ -1,11 +1,10 @@
 import React from 'react';
-import {
-    Text, View, Image, StyleSheet, Button, ScrollView, TouchableOpacity, TextInput
-} from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+
 
 const styles = StyleSheet.create({
 
-    text_main: {
+    header_text: {
 
         color: "#145585",
         marginTop: 16,
@@ -23,7 +22,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
 
     },
-    text_: {
+    license_text: {
 
         color: "#145585",
         marginTop: 30,
@@ -43,35 +42,15 @@ const styles = StyleSheet.create({
 
 })
 
-export default function selector_midia() {
+export default function Screen () {
 
     return (
-        <>
 
-            <View style={styles.top}>
-
-
-                <Text style={styles.text_main}>Licença</Text>
-
-            </View>
-
-            <View style={styles.text_}>
-
-                <Text>Digite sua licença</Text>
-
-            </View>
-
-            <View style={styles.text_}>
-
-                <TextInput style={styles.text_input}
-                    placeholderTextColor="#000"
-                    placeholder="215-216-217-200cx"
-                    keyboardAppearance="default"
-
-                />
-
-            </View>
-        </>
-
-    )
-}
+        <View>
+    
+          <Text>Esse é o componente é apenas para teste</Text>
+    
+        </View>
+    
+      );
+    }
