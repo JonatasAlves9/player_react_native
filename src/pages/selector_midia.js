@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState,useEffect } from 'react';
 import {
   Text,
   View,
@@ -9,7 +9,11 @@ import {
   SafeAreaView,
   Image,
   ScrollView,
+  TextInput,
+  Keyboard,
+  Alert,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import FilePickerManager from 'react-native-file-picker';
 
 
@@ -20,18 +24,17 @@ export default function selector_midia() {
       type: 'web',
     },
   ]);
-const [sellers, setSellers]= useState([])
-
+  const [sellers, setSellers] = useState([])
 
   const listSellers = sellers.map(seller =>
     <div key={seller.id} className={styles.card}>
       <p className={styles.titleCard}>{seller.name}</p>
       <p className={styles.infoCard}><b>Email:</b> <br /> {seller.email}<br /><b>Telefone:</b> <br /> {seller.cellphone}</p>
-      </div>
+    </div>
   )
 
 
-  const buttons = ({item}) => (
+  const buttons = ({ item }) => (
     <>
       <TouchableOpacity
         style={styles.button_delete}
@@ -68,17 +71,29 @@ const [sellers, setSellers]= useState([])
         var someArrayString = await AsyncStorage.getItem('someArrayName');
         var someArray = JSON.parse(someArrayString);
         console.log(someArray);
+
       }
+    
+      useEffect(()=>{
+        setNewList(AsyncStorage.getItem('someArrayName'))
+        console.log(newList)
+        document.title = sellers;
+      }, [sellers]);
+      
     });
   }
   return (
     <>
       {!newList ? (
         <>
+
           <View style={styles.top}>
-            <Text style={styles.text_main}>
-              Selecione as mídias para o player
+            <ScrollView>
+              <Text style={styles.text_main}
+                onChangeText={(text) => this.SetState({ total: text })}>
+                Selecione as mídias para o player
             </Text>
+            </ScrollView>
           </View>
 
           <TouchableOpacity style={styles.button_main} onPress={selectFile}>
@@ -86,26 +101,30 @@ const [sellers, setSellers]= useState([])
           </TouchableOpacity>
         </>
       ) : (
-        <>
-          <View style={styles.top}>
-            <Text style={styles.text_main}>
-              Selecione as mídias para o player
+          <>
+            <View style={styles.top}>
+              <ScrollView>
+                <Text style={styles.text_main}>
+                  Selecione as mídias para o player
             </Text>
-          </View>
-          <SafeAreaView style={styles.container}>
-            <FlatList
-              data={newList}
-              renderItem={buttons}
-              keyExtractor={(item) => item.uri}
-            />
+              </ScrollView>
+            </View>
+            <ScrollView>
+              <SafeAreaView style={styles.container}>
+                <FlatList
+                  data={newList}
+                  renderItem={buttons}
+                  keyExtractor={(item) => item.uri}
+                />
 
-            <TouchableOpacity style={styles.button_main} onPress={selectFile}>
-              <Image source- />
-              <Text style={styles.text_main2}>Adicionar</Text>
-            </TouchableOpacity>
-          </SafeAreaView>
-        </>
-      )}
+                <TouchableOpacity style={styles.button_main} onPress={selectFile}>
+                  <Image source- />
+                  <Text style={styles.text_main2}>Adicionar</Text>
+                </TouchableOpacity>
+              </SafeAreaView>
+            </ScrollView>
+          </>
+        )}
     </>
   );
 }

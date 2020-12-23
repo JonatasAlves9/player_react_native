@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
         height: 200,
         marginBottom: 20,
         marginTop: 20,
-        marginLeft: 245,
+        marginEnd: 60,
+        marginLeft: 230,
         borderRadius: 10,
 
     },
@@ -21,32 +22,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "space-between",
         backgroundColor: '#0076A3',
-        padding: 30,
+        padding: 20,
         margin: 150,
-        marginTop: 10,
-        borderRadius: 10
-
-
-    },
-
-
-    text_main: {
-
-        color: "#145585",
-        marginLeft: 250,
-        fontSize: 18,
-        marginTop: -150,
-
-
-
-    },
-    text_main2: {
-
-        color: "#000",
-        marginLeft: 250,
-        fontSize: 18,
-        marginTop: 10
-
+        marginTop: -5,
+        borderRadius: 10,
 
 
     },
@@ -60,8 +39,6 @@ export default function Main({ navigation }) {
 
     return (
 
-
-
         <View>
 
             <ScrollView>
@@ -73,21 +50,24 @@ export default function Main({ navigation }) {
 
                 <TouchableOpacity style={styles.button_main}
                     onPress={() => navigation.navigate('Selector_midia')} >
-                <Text style={styles.text_main}> Selecionar Mídias </Text>
-                    </TouchableOpacity>
+                    <Text> Selecionar Mídias </Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button_main}
-                title="Iniciar Player" />
-            <Text style={styles.text_main}> Iniciar Player </Text>
+                <TouchableOpacity style={styles.button_main}
+                    onPress={() => navigation.navigate('')} >
+                    <Text> Iniciar Player </Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button_main}
-                title="Configurações"
-                onPress={() => navigation.navigate('Config')} />
-            <Text style={styles.text_main}> Configurações </Text>
+                <TouchableOpacity style={styles.button_main}
+                    onPress={() => navigation.navigate('Config')} >
+                    <Text> Configurações </Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button_main}
-                onPress={() => navigation.navigate('Teste')} />
-            <Text style={styles.text_main}> Selecionar Mídias </Text>
+                <TouchableOpacity style={styles.button_main}
+                    onPress={() => navigation.navigate('Teste')} >
+                    <Text> Licença </Text>
+                </TouchableOpacity>
+
 
             </ScrollView>
 
